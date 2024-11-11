@@ -1,0 +1,70 @@
+.songList {
+  display: flex;
+  flex-direction: column;
+  padding: 0 60px;
+}
+
+.songInfo {
+  display: flex;
+  align-items: center;
+  justify-content: stretch;
+  /* background-color: black; */
+  height: 50px;
+}
+
+.num {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+}
+.img {
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  cursor: pointer;
+}
+
+.img img {
+  height: 35px;
+}
+
+.title {
+  width: 30%;
+  cursor: pointer;
+}
+
+.playings {
+  width: 15%;
+  cursor: pointer;
+}
+
+.time {
+  width: 10%;
+  cursor: pointer;
+}
+
+.album {
+  width: 20%;
+  cursor: pointer;
+}
+
+.upperBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.upperBar p {
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.upperBar span {
+  font-size: 14px;
+  /* font-weight: bold; */
+  cursor: pointer;
+}

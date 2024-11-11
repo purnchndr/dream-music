@@ -1,0 +1,40 @@
+.sidebar {
+  background-color: #0b0000;
+  max-width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px 70px;
+}
+
+.menu {
+  padding-top: 35px;
+}
+
+.sidebar p {
+  font-size: 14px;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  padding: 10px 5px;
+  cursor: pointer;
+}
+
+.menuItem span {
+  margin-left: 20px;
+  font-size: 18px;
+}
+
+.settingItem {
+  display: flex;
+  align-items: center;
+  padding: 10px 5px;
+  cursor: pointer;
+}
+
+.settingItem span {
+  margin-left: 20px;
+  font-size: 18px;
+}

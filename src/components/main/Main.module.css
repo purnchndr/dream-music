@@ -1,0 +1,13 @@
+.main {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+.mainPlayer {
+  width: 60%;
+  height: 100vh;
+  background: rgb(60, 0, 0);
+  background: linear-gradient(0deg, rgba(35, 0, 0, 1) 0%, rgb(72, 0, 0) 100%);
+}
