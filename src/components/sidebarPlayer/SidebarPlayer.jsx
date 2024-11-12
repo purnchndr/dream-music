@@ -2,46 +2,50 @@ import { useEffect, useState } from 'react';
 import style from './SidebarPlayer.module.css';
 import { Howl, Howler } from 'howler';
 
-function SidebarPlayer() {
-  const sound = new Howl({
-    src: [
-      'https://aac.saavncdn.com/001/965d3ffbc85612d01e37bced940fa9a5_160.mp4',
-    ],
-    autoplay: false,
-    loop: false,
-    volume: 0.5,
-    onend: function () {
-      console.log('Finished!');
-    },
-  });
+// import ReactHowler from 'react-howler';
 
+function SidebarPlayer({ data, setSelected }) {
   return (
     <div className={style.sidebarPlayer}>
       <div className={style.playerBox}>
-        <Player duration={300} sound={sound} />
+        <Player data={data} setSelected={setSelected} />
       </div>
     </div>
   );
 }
 
-function Player({ sound }) {
-  const duration = sound.duration() || 0;
-
+function Player({ data, setSelected }) {
+  const [sound, setSound] = useState();
   const [time, setTime] = useState(0);
-  const [play, setPlay] = useState(false);
+  const [play, setPlay] = useState(data.song);
+  useEffect(() => {
+    const sound = new Howl({
+      src: [data.song],
+      autoplay: true,
+      loop: false,
+      volume: 0.5,
+      onend: function () {
+        console.log('Finished!');
+        setSelected('next');
+      },
+    });
+    setSound(sound);
+    return () => sound.stop();
+  }, [data]);
+
+  const duration = sound?.duration() || 0;
 
   const handelTime = e => {
     setTime(+e.target.value || 0);
     sound.seek(+e.target.value || 0);
   };
-  const handelPre = e => {};
+
+  const handelPre = e => setSelected('pre');
   const handelPlay = e => {
     sound.playing() ? sound.pause() : sound.play();
-    setPlay(s => {
-      return sound.playing();
-    });
+    setPlay(s => !s);
   };
-  const handelNext = e => {};
+  const handelNext = e => setSelected('next');
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -52,9 +56,11 @@ function Player({ sound }) {
   return (
     <div className={style.player}>
       <p className={style.playing}>Now Playing</p>
-      <img className={style.image} src='./img/poster.png' alt='poster' />
-      <p className={style.song}>Beat It</p>
-      <p className={style.author}>Michael Jackson</p>
+      {data.poster && (
+        <img className={style.image} src={data.poster} alt='poster' />
+      )}
+      <p className={style.song}>{data.title}</p>
+      <p className={style.author}>{data.singer}</p>
       <div className={style.times}>
         <span className={style.time}>
           {getMin(time)}:{getSec(time)}

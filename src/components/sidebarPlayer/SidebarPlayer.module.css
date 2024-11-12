@@ -88,3 +88,9 @@
   color: #300000;
   cursor: pointer;
 }
+
+@media screen and (max-width: 800px) {
+  .sidebarPlayer {
+    width: 100%;
+  }
+}
